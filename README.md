@@ -1,6 +1,22 @@
-# bf-editor
+# bf-editor (冰帆编辑器)
 
-> A Vue.js project
+> 基于vue vue-router vuex element-ui 的markdown编辑器。支持文件与文件夹操作，支持保存与分享
+
+## 更新进度
+
+- 完成编辑器功能
+- 完成文件文件夹前端操作
+
+## 待完成
+
+ - 界面修改
+ - 文件文件夹保存
+ - 一键分享
+ - 图床功能
+ - 直接粘贴图片功能
+ - 编辑器直接书写代码功能
+ - 普通富文本编辑器的集成
+ - 更多
 
 ## Build Setup
 
@@ -18,4 +34,5 @@ npm run build
 npm run build --report
 ```
 
-For detailed explanation on how things work, checkout the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
+## 效果
+！()[https://github.com/CleverFan/bf-editor/show.png]

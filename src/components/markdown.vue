@@ -369,7 +369,6 @@
             resize: none;
         }
     }
-
     // 预览区
     .previewContainer {
         width: 100%;
