@@ -35,4 +35,4 @@ npm run build --report
 ```
 
 ## 效果
-！()[https://github.com/CleverFan/bf-editor/show.png]
+![](https://github.com/CleverFan/bf-editor/blob/master/show.png)
