@@ -357,7 +357,7 @@
         width: 100%;
         box-sizing: border-box;
         border-right: 1px solid #ddd;
-        background: #888893;
+        background: #acaeb0;
         color: #fff;
         padding: 10px;
         .mdEditor {

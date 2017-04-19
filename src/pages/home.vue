@@ -45,9 +45,10 @@ export default{
   .home{
     height:100%;
     min-height: 100%;
+
     .home-header{
       height: 10%;
-      padding-right: 1%;
+      margin-bottom: 0.3%;
     }
     .main-div{
       height: 90%;
@@ -65,8 +66,6 @@ export default{
       }
     }
   }
-
-
   .bg-purple-dark {
     background: #99a9bf;
   }
