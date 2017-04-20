@@ -30,7 +30,8 @@
       return{
         addFileName: '',
         addVisible: false,
-        fileList : this.$store.state.fileList
+        fileList : this.$store.state.fileList,
+        nowFile : this.$store.state.nowData.nowFile
       }
     },
     computed: {

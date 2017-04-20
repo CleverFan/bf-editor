@@ -66,7 +66,7 @@
     });
 
     function insertContent(val, that) {
-        let textareaDom = document.querySelector('.mdEditor');
+        let textareaDom = document.querySelector('.mdEditor textarea');
         let value = textareaDom.value;
         let point = range.getCursortPosition(textareaDom);
         let lastChart = value.substring(point - 1, point);
@@ -77,7 +77,7 @@
         } else {
             range.insertAfterText(textareaDom, val);
         }
-        that.input = document.querySelector('.mdEditor').value;
+        that.input = document.querySelector('.mdEditor textarea').value;
     }
     export default {
         name: 'markdown',
@@ -139,7 +139,7 @@
                 insertContent(tmp, this);
             },
             addCode: function() {
-                let textareaDom = document.querySelector('.mdEditor');
+                let textareaDom = document.querySelector('.mdEditor textarea');
                 let value = textareaDom.value;
                 let point = range.getCursortPosition(textareaDom);
                 let lastChart = value.substring(point - 1, point);
@@ -151,7 +151,7 @@
                 }
             },
             addStrikethrough: function() {
-                let textareaDom = document.querySelector('.mdEditor');
+                let textareaDom = document.querySelector('.mdEditor textarea');
                 let value = textareaDom.value;
                 let point = range.getCursortPosition(textareaDom);
                 let lastChart = value.substring(point - 1, point);
@@ -163,7 +163,7 @@
                 }
             },
             addStrong: function() {
-                let textareaDom = document.querySelector('.mdEditor');
+                let textareaDom = document.querySelector('.mdEditor textarea');
                 let value = textareaDom.value;
                 let point = range.getCursortPosition(textareaDom);
                 let lastChart = value.substring(point - 1, point);
@@ -175,7 +175,7 @@
                 }
             },
             addItalic: function() {
-                let textareaDom = document.querySelector('.mdEditor');
+                let textareaDom = document.querySelector('.mdEditor textarea');
                 let value = textareaDom.value;
                 let point = range.getCursortPosition(textareaDom);
                 let lastChart = value.substring(point - 1, point);
@@ -187,7 +187,7 @@
                 }
             },
             setStrong: function() {
-                let textareaDom = document.querySelector('.mdEditor');
+                let textareaDom = document.querySelector('.mdEditor textarea');
                 let point = range.getCursortPosition(textareaDom);
             },
             addLine: function() {
@@ -197,7 +197,7 @@
                 insertContent("[Vue](http://www.cleverfan.cc/logo.png)", this);
             },
             addQuote: function() {
-                let textareaDom = document.querySelector('.mdEditor');
+                let textareaDom = document.querySelector('.mdEditor textarea');
                 let value = textareaDom.value;
                 let point = range.getCursortPosition(textareaDom);
                 let lastChart = value.substring(point - 1, point);
@@ -239,7 +239,7 @@
             },
             fullPageFn: function() {
                 this.fullPageStatus = !this.fullPageStatus;
-                let maxEditScrollHeight=document.querySelector('.mdEditor').scrollHeight-document.querySelector('.mdEditor').clientHeight;
+                let maxEditScrollHeight=document.querySelector('.mdEditor ').scrollHeight-document.querySelector('.mdEditor').clientHeight;
                 let maxPreviewScrollHeight=document.querySelector('.previewContainer').scrollHeight-document.querySelector('.previewContainer').clientHeight;
                 this.maxEditScrollHeight = maxEditScrollHeight
                 this.maxPreviewScrollHeight = maxPreviewScrollHeight
