@@ -27,6 +27,15 @@ const actions = {
     }).catch(function(err){
       console.log(err)
     })
+  },
+  changeNowDir(context, nowDir){
+    context.commit('changeNowDir', nowDir)
+  },
+  changeEditContentByFileIndex(context, index){
+    context.commit('changeEditContentByFileIndex', index)
+  },
+  changeEditData(context, data){
+    context.commit('changeEditData', data)
   }
 }
 

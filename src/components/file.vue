@@ -15,7 +15,7 @@
     <el-menu mode="vertical" class = "new-file-menu" default-active="1">
       <el-menu-item index="1" v-popover:popover-file><i class="el-icon-plus"></i>新建文章</el-menu-item>
     </el-menu>
-    <el-menu class="show-file-menu" default-active="1">
+    <el-menu class="show-file-menu" default-active="1"  @select="onSelect">
       <el-menu-item v-for="file in files" :key="file.id" :index="file.id">
         {{file.title}} {{file.time}}
       </el-menu-item>
@@ -61,6 +61,11 @@
         this.addDirectoryName = ''
         alert("添加成功")
 
+      },
+      onSelect : function (index){
+        //改变编辑器中的数据
+        this.$store.commit('changeEditContentByFileIndex', index)
+                console.log(this.$store.state.nowData.editData.mdValue)
       }
     }
   }

@@ -1,7 +1,6 @@
 <template>
     <div class="mdContainer" :class="{ fullPage: fullPageStatus }">
         <div class="navContainer" v-if="navStatus">
-            <div class="nameContainer" v-if="icoStatusP" @click="happyDay">bf-Editor</div>
             <div class="markContainer">
                 <ul class="markListGroup">
                     <li class="markListItem" @click="addStrong" title="strong"><b>B</b></li>
@@ -30,7 +29,14 @@
         </div>
         <div class="mdBodyContainer">
             <div class="editContainer" v-if="editStatus">
-                <textarea name="" class="mdEditor" @keydown.9="tabFn" v-scroll="editScroll" v-model="input"></textarea>
+                <!--<textarea name="" class="mdEditor" @keydown.9="tabFn" v-scroll="editScroll" >{{getInput}}</textarea>-->
+              <el-input
+                class="mdEditor" @keydown.9="tabFn" v-scroll="editScroll"
+                @change="changeEdit"
+                type="textarea"
+                placeholder="请输入内容"
+                v-model="getInput">
+              </el-input>
             </div>
             <div class="previewContainer markdown-body" v-scroll="previewScroll" v-html="compiledMarkdown" v-if="previewStatus">
             </div>
@@ -75,10 +81,9 @@
     }
     export default {
         name: 'markdown',
-        props: ['mdValuesP', 'fullPageStatusP', 'editStatusP', 'previewStatusP', 'navStatusP', 'icoStatusP'],
+        props: ['fullPageStatusP', 'editStatusP', 'previewStatusP', 'navStatusP', 'icoStatusP'],
         data() {
             return {
-                input: this.mdValuesP || '',
                 editStatus: this.editStatusP || true,
                 previewStatus: this.previewStatusP || true,
                 fullPageStatus: this.fullPageStatusP || false,
@@ -253,24 +258,40 @@
             },
             happyDay:function(){
                 window.open('https://github.com/cleverfan');
+            },
+            changeEdit:function(str){
+              let data = {};
+                data.mdValue = str;
+                data.htmlValue = marked(str, {
+                    sanitize: true
+                });
+                this.$store.dispatch('changeEditData', data)
+                let maxEditScrollHeight=document.querySelector('.mdEditor').scrollHeight-document.querySelector('.mdEditor').clientHeight;
+                let maxPreviewScrollHeight=document.querySelector('.previewContainer').scrollHeight-document.querySelector('.previewContainer').clientHeight;
+                this.maxEditScrollHeight = maxEditScrollHeight
+                this.maxPreviewScrollHeight = maxPreviewScrollHeight
             }
         },
         computed: {
             compiledMarkdown: function() {
-                return marked(this.input, {
+                return marked(this.getInput, {
                     sanitize: true
                 })
+            },
+            getInput : function(){
+              return this.$store.state.nowData.editData.mdValue
             }
         },
         watch: {
-            input: function() {
+            getInput: function() {
                 let data = {};
-                data.mdValue = this.input;
-                data.htmlValue = marked(this.input, {
+                data.mdValue = this.getInput;
+                data.htmlValue = marked(this.getInput, {
                     sanitize: true
                 });
                 //this.$emit('childevent', data);
-                this.$store.state.editData = data;
+                //this.$store.state.editData = data;
+                this.$store.dispatch('changeEditData', data)
                 let maxEditScrollHeight=document.querySelector('.mdEditor').scrollHeight-document.querySelector('.mdEditor').clientHeight;
                 let maxPreviewScrollHeight=document.querySelector('.previewContainer').scrollHeight-document.querySelector('.previewContainer').clientHeight;
                 this.maxEditScrollHeight = maxEditScrollHeight
@@ -360,14 +381,24 @@
         background: #acaeb0;
         color: #fff;
         padding: 10px;
+
         .mdEditor {
+          height: 100%;
+          width: 100%;
+          background: transparent;
+          outline: none;
+          color: #fff;
+          resize: none;
+          textarea{
             height: 100%;
             width: 100%;
             background: transparent;
             outline: none;
             color: #fff;
             resize: none;
+          }
         }
+
     }
     // 预览区
     .previewContainer {

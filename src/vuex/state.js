@@ -15,10 +15,10 @@ const state = {
   },
   nowData : {
     nowDir : 1, // 当前文集，默认是1
-    nowFile : 1, // 当前文章，默认是1
+    nowFile : 1, // 当前文章id，默认是1
     editData : {  // 编辑器数据
       mdValue : '', // md源码
-      htmlValue: '' // html源码
+      htmlValue: '', // html源码
     },
   },
 

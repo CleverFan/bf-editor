@@ -51,9 +51,7 @@
 
       },
       changeDir : function(index){
-        console.log(index)
-        this.$store.state.nowData.nowDir = index
-        console.log(this.$store.state.nowData.nowDir)
+        this.$store.dispatch('changeNowDir', index)
       }
     }
   }
