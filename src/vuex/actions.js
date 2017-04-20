@@ -36,6 +36,12 @@ const actions = {
   },
   changeEditData(context, data){
     context.commit('changeEditData', data)
+  },
+  addDir(context,dirName){
+    context.commit('addDir', dirName)
+  },
+  addFile(context, fileName){
+    context.commit('addFile', fileName)
   }
 }
 

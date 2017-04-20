@@ -32,7 +32,11 @@
       return{
           addVisible: false,
           addDirectoryName : '',
-          dirList : this.$store.state.dirList
+      }
+    },
+    computed : {
+      dirList : function(){
+        return this.$store.state.dirList
       }
     },
     methods: {
@@ -42,12 +46,13 @@
       addDirectory : function (){
         if(this.addDirectoryName == null || this.addDirectoryName == ''){
           alert("请输入名字");
+        }else{
+          // 判断是否重复
+          // 添加
+          this.$store.dispatch('addDir', this.addDirectoryName)
+          this.addVisible = false
+          this.addDirectoryName = ''
         }
-        // 判断是否重复
-        // 添加
-        this.addVisible = false
-        this.addDirectoryName = ''
-        alert("添加成功")
 
       },
       changeDir : function(index){

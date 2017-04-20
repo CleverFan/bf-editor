@@ -3,6 +3,9 @@
      <div class="home-header">
        <all-header></all-header>
      </div>
+    <div class="homeContent">
+      <router-view></router-view>
+    </div>
   </div>
 </template>
 

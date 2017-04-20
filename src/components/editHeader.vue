@@ -48,7 +48,7 @@ export default{
   },
   methods : {
     goHome : function(){
-      this.$router.push('home')
+      this.$router.push('/home/' + this.$store.state.user.id)
     },
     publish : function (){
       if(this.push.site == "" || this.push.site == null){

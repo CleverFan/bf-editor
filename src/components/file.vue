@@ -16,7 +16,7 @@
       <el-menu-item index="1" v-popover:popover-file><i class="el-icon-plus"></i>新建文章</el-menu-item>
     </el-menu>
     <el-menu class="show-file-menu" default-active="1"  @select="onSelect">
-      <el-menu-item v-for="file in files" :key="file.id" :index="file.id">
+      <el-menu-item v-for="file in files" :key="file.id" :index="file.id" v-if="file != null">
         {{file.title}} {{file.time}}
       </el-menu-item>
 
@@ -30,22 +30,17 @@
       return{
         addFileName: '',
         addVisible: false,
-        fileList : this.$store.state.fileList,
-        nowFile : this.$store.state.nowData.nowFile
       }
     },
     computed: {
       files : function (){
-        let lists = this.fileList
-        for (let index in lists){
-          if (lists[index].id == this.nowDir){
-            return lists[index].list
-          }
-        }
-        return '[]'
+        return this.$store.state.fileList[this.$store.state.nowData.nowDir - 1].list
       },
       nowDir : function () {
         return this.$store.state.nowData.nowDir
+      },
+      nowFile : function(){
+        return this.$store.state.nowData.nowFile
       }
     },
     methods: {
@@ -53,14 +48,15 @@
         this.addVisible = false;
       },
       addFile : function (){
-        if(this.addDirectoryName == null || this.addDirectoryName == ''){
+        if(this.addFileName == null || this.addFileName == ''){
           alert("请输入名字");
+        }else{
+          // 判断是否重复
+          // 添加
+          this.$store.dispatch('addFile', this.addFileName)
+          this.addVisible = false
+          this.addDirectoryName = ''
         }
-        // 判断是否重复
-        // 添加
-        this.addVisible = false
-        this.addDirectoryName = ''
-        alert("添加成功")
 
       },
       onSelect : function (index){

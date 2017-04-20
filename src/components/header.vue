@@ -1,16 +1,17 @@
 <template>
   <div class="main-all-header">
     <el-menu  class="link-menu" mode="horizontal">
-      <el-menu-item index="1">主页</el-menu-item>
+      <el-menu-item index="1" @click="go(5)">主页</el-menu-item>
       <el-menu-item index="2">消息</el-menu-item>
     </el-menu>
 
     <el-menu class="click-menu" mode="horizontal">
       <el-submenu index="1">
         <template slot="title">个人中心</template>
-        <el-menu-item index="2-1">多媒体中心</el-menu-item>
-        <el-menu-item index="2-2">文章管理</el-menu-item>
-        <el-menu-item index="2-3">系统设置</el-menu-item>
+        <el-menu-item index="1-1" @click="go(1)">个人设置</el-menu-item>
+        <el-menu-item index="1-2" @click="go(2)">多媒体中心</el-menu-item>
+        <el-menu-item index="1-3" @click="go(3)">文章管理</el-menu-item>
+        <el-menu-item index="1-4" @click="go(4)">系统设置</el-menu-item>
       </el-submenu>
       <el-button type="primary" @click="write">写文章</el-button>
     </el-menu>
@@ -32,7 +33,28 @@
     ,
     methods: {
       write : function(){
-        this.$router.push('edit')
+        this.$router.push('/edit/' + this.$store.state.user.id)
+      },
+      go : function(index){
+        let router = this.$router
+        switch(index){
+          case 1:
+            router.push('/home/' + this.$store.state.user.id + '/person')
+            break;
+          case 2:
+            router.push('/home/' + this.$store.state.user.id + '/mediaManage')
+          break;
+          case 3:
+            router.push('/home/' + this.$store.state.user.id + '/fileManage')
+          break;
+          case 4:
+            router.push('/home/' + this.$store.state.user.id + '/sysManage')
+          break;
+          case 5:
+            router.push('/home/' + this.$store.state.user.id)
+          break;
+
+        }
       }
     }
   }

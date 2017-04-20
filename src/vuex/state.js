@@ -4,8 +4,9 @@
 
 const state = {
   user: {
-    name: '',
-    password: ''
+    id:'1',
+    name: 'chengfan',
+    password: '123456'
   },
   newUser : {
     name: '',
@@ -14,12 +15,13 @@ const state = {
     github : ''
   },
   nowData : {
-    nowDir : 1, // 当前文集，默认是1
-    nowFile : 1, // 当前文章id，默认是1
+    nowDir : "1", // 当前文集，默认是1
+    nowFile : "1", // 当前文章id，默认是1
     editData : {  // 编辑器数据
       mdValue : '', // md源码
       htmlValue: '', // html源码
     },
+
   },
 
   fileList : [
