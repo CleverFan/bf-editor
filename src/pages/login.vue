@@ -11,12 +11,13 @@
 </template>
 
 <script>
-
+import * as types from '../vuex/type'
 export default{
   name: 'login',
   data(){
       return{
-
+        msg: '',
+        token: '111'
       }
   },
   computed: {
@@ -24,9 +25,19 @@ export default{
       return this.$store.state.user
     }
   },
+  mounted(){
+    this.$store.commit(types.TITLE, 'Login');
+  },
   methods: {
     tryLogin () {
-      this.$store.dispatch('tryLogin')
+      if (this.token) {
+        //this.$store.commit(types.LOGIN, this.token)
+        this.$store.dispatch(types.LOGIN, this.token)
+        let redirect = decodeURIComponent(this.$route.query.redirect || '/home/' + this.$store.state.user.id);
+        this.$router.push({
+          path: redirect
+        })
+      }
     },
     register() {
       this.$router.push('register')

@@ -1,7 +1,23 @@
 /**
  * Created by chengfan on 2017/4/19.
  */
+
+import * as types from './type'
+
 const mutations = {
+
+  [types.LOGIN]: (state, data) => {
+    localStorage.token = data;
+    state.token = data;
+  },
+  [types.LOGOUT]: (state) => {
+    localStorage.removeItem('token');
+    state.token = null
+  },
+  [types.TITLE]: (state, data) => {
+    state.title = data;
+  },
+
   changeNowDir(state, nowDir) {
     state.nowData.nowDir = nowDir
   },
@@ -26,11 +42,6 @@ const mutations = {
     state.fileList.push({id : dirLength++ + "", list : []})
   },
   addFile(state, fileName){
-    //    id : "1",
-    //   list : [
-    //   {id : "1", title : "文章1" , time:  "2017.1" , content : '### 123 \n - 123 \n - 234'},
-    //   {id : "2", title :"文章2" , time : "2017.2" , content : '``` \n var a = 1 \n ```'}
-    // ]
     let date = new Date()
     let time = date.getYear() + "." + date.getMonth() + "." + date.getDay()
     let fileList = state.fileList[state.nowData.nowDir - 1].list

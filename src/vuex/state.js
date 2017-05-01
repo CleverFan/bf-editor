@@ -3,6 +3,10 @@
  */
 
 const state = {
+  //user: {},
+  token: null,
+  title: '',
+
   user: {
     id:'1',
     name: 'chengfan',

@@ -1,10 +1,22 @@
 /**
  * Created by chengfan on 2017/4/15.
  */
-import axios from 'axios'
+import axios from '../http'
 import config from '../config'
+import * as types from './type'
 
 const actions = {
+
+  // 登录验证三方法
+  [types.LOGIN]: (context, data) => {
+    context.commit(types.LOGIN, data)
+  },
+  [types.LOGOUT]: (context, data) => {
+    context.commit(types.LOGIN, data)
+  },
+  [types.TITLE]: (context, data) => {
+    context.commit(types.LOGIN, data)
+  },
   // 封装一个 ajax 方法
   tryLogin (context) {
     axios({
